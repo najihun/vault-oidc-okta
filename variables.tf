@@ -15,7 +15,7 @@ variable "okta_discovery_url" {
 
 variable "okta_redirect_uris" {
   type        = string
-  description = "{Vault_ADDR:8200}/ui/vault/auth/oidc/oidc/callback"
+  description = "{Vault_ADDR:8200}/ui/vault/auth/oidc/oidc/callback"v
 }
 
 variable "okta_token_type" {
