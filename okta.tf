@@ -13,10 +13,10 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
         var.okta_redirect_uris,
         "http://localhost:8250/oidc/callback"
     ]
-    
+
     role_type       = "oidc"
     user_claim = "sub"
-    token_policies = ["default"]
+//   token_policies = ["default"]
 }
 
 
