@@ -7,7 +7,7 @@ resource "vault_generic_endpoint" "admin-user" {
     path        = "auth/userpass/users/admin-user"
     ignore_absent_fields = true
 
-    data_json = << EOT
+    data_json = <<EOT
     {
       "policies" : ["admin-policy"],
       "password" : "${var.admin_password}"
@@ -18,7 +18,7 @@ resource "vault_generic_endpoint" "admin-user" {
 resource "vault_policy" "admin-policy" {
   name = "admin-policy"
 
-  policy = << EOT
+  policy = <<EOT
     path "*" {
       capabilities = ["read", "delete", "update", "create", "list", "sudo"]
     }
