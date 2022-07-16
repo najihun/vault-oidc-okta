@@ -17,11 +17,5 @@ resource "vault_generic_endpoint" "admin-user" {
 
 resource "vault_policy" "admin-policy" {
   name = "admin-policy"
-
-  policy = <<EOT
-    path "*" {
-      capabilities = ["read", "delete", "update", "create", "list", "sudo"]
-    }
-
-  EOT
+  policy = file("policies/admin-policy.hcl")
 }
