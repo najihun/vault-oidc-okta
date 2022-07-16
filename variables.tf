@@ -82,3 +82,9 @@ roles = {
 EOF
 }
 */
+
+variable "admin_password" {
+    type = string
+    description = "userpass password for admin-user instead of root token"
+  
+}
