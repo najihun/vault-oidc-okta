@@ -1,5 +1,3 @@
-/*
-
 resource "vault_jwt_auth_backend" "okta_oidc" {
   description        = "Okta OIDC"
   path               = var.okta_mount_path
@@ -23,6 +21,5 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     ]
 
     role_type       = "oidc"
-    user_claim = "sub"
+    user_claim = "groups"
 }
-*/
