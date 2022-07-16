@@ -14,8 +14,3 @@ resource "vault_generic_endpoint" "admin-user" {
     }
     EOT
 }
-
-resource "vault_policy" "admin-policy" {
-  name = "admin-policy"
-  policy = file("policies/admin-policy.hcl")
-}
