@@ -9,6 +9,8 @@ terraform {
 
 
 // set as ENV
-provider "vault" {}
+provider "vault" {
+  namespace = "admin"
+}
 
 
