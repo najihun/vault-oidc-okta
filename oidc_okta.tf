@@ -21,5 +21,5 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     ]
 
     role_type       = "oidc"
-    user_claim = "groups"
+    user_claim = "sub"
 }
