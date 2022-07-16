@@ -29,7 +29,7 @@ variable "okta_client_id" {
   description = "okta client id"
 }
 
-variable "var.okta_client_secret" {
+variable "okta_client_secret" {
   type = string
   description = "okta client secret"
 }
