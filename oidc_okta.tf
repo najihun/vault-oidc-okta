@@ -10,6 +10,7 @@ resource "vault_jwt_auth_backend" "okta_oidc" {
     listing_visibility = "unauth"
     token_type         = var.okta_token_type
   }
+  default_role = "vault-role-okta-default"
 }
 
 resource "vault_jwt_auth_backend_role" "okta_role" {
