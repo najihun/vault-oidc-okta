@@ -10,7 +10,7 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     backend = vault_jwt_auth_backend.okta_oidc.path
     role_name = "vault-role-okta-default"
     allowed_redirect_uris = [
-        "${var.okta_redirect_uris}",
+        var.okta_redirect_uris,
         "http://localhost:8250/oidc/callback"
     ]
 

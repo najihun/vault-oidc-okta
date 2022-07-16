@@ -4,7 +4,6 @@ variable "admin_password" {
 
 variable "okta_mount_path" {
   type = string
-  default = "okta"
 }
 
 variable "okta_discovery_url"{
