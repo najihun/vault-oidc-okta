@@ -15,8 +15,7 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     ]
 
     user_claim = "sub"
-    policies = "default"
-
+    token_policies = "default"
 }
 /*
 resource "vault_jwt_auth_backend_role" "okta_role" {
