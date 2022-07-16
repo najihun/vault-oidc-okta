@@ -15,7 +15,7 @@ resource "vault_jwt_auth_backend" "okta_oidc" {
 
 resource "vault_jwt_auth_backend_role" "okta_role" {
     backend = vault_jwt_auth_backend.okta_oidc.path
-    bound_audiences = [ "api://default", var.okta_client_id ]
+    bound_audiences = [ "api://default", var.okta_client_id. ]
     role_name = "vault-role-okta-default"
     allowed_redirect_uris = [
         var.okta_redirect_uris,
@@ -23,5 +23,4 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     ]
     role_type       = "oidc"
     user_claim = "sub"
-    token_policies = ["default"]
 }
