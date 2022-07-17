@@ -42,12 +42,3 @@ resource "vault_jwt_auth_backend_role" "vault-role-okta-group-vault-developer" {
     groups_claim = "groups"
 }
 
-resource "vault_identity_group" "okta-group-vault-developer" {
-  name     = "okta-group-vault-developer"
-  type     = "external"
-  policies = [vault_policy.developer-policy.name]
-
-  metadata = {
-    responsibility = "okta-group-vault-developer"
-  }
-}
