@@ -1,3 +1,4 @@
+// auth_method: oidc path:okta
 resource "vault_jwt_auth_backend" "okta_oidc" {
   description        = "Okta OIDC"
   path               = var.okta_mount_path
@@ -13,6 +14,7 @@ resource "vault_jwt_auth_backend" "okta_oidc" {
   
 }
 
+// test role to verify integration with Okta
 resource "vault_jwt_auth_backend_role" "okta_role" {
     backend = vault_jwt_auth_backend.okta_oidc.path
     bound_audiences = [ "api://default", var.okta_client_id, ]
@@ -23,4 +25,29 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
     ]
     role_type       = "oidc"
     user_claim = "sub"
+}
+
+// developer role
+resource "vault_jwt_auth_backend_role" "vault-role-okta-group-vault-developer" {
+    backend = vault_jwt_auth_backend.okta_oidc.path
+    bound_audiences = [ "api://default", var.okta_client_id, ]
+    role_name = "vault-role-okta-default"
+    allowed_redirect_uris = [
+        var.okta_redirect_uris,
+        "http://localhost:8250/oidc/callback",
+    ]
+    role_type       = "oidc"
+    user_claim = "sub"
+    oidc_scopes = [ "groups" ]
+    groups_claim = "groups"
+}
+
+resource "vault_identity_group" "okta-group-vault-developer" {
+  name     = "okta-group-vault-developer"
+  type     = "external"
+  policies = [var.vault_policy.developer-policy.name]
+
+  metadata = {
+    responsibility = "okta-group-vault-developer"
+  }
 }
