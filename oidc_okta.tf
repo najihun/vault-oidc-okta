@@ -7,11 +7,6 @@ resource "vault_jwt_auth_backend" "okta_oidc" {
   oidc_client_secret = var.okta_client_secret
   oidc_discovery_url = var.okta_discovery_url
   bound_issuer       = var.okta_discovery_url
-  tune {
-    listing_visibility = "unauth"
-    token_type         = var.okta_token_type
-  }
-  
 }
 
 // test role to verify integration with Okta
