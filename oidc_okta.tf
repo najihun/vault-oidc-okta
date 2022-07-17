@@ -31,7 +31,7 @@ resource "vault_jwt_auth_backend_role" "okta_role" {
 resource "vault_jwt_auth_backend_role" "vault-role-okta-group-vault-developer" {
     backend = vault_jwt_auth_backend.okta_oidc.path
     bound_audiences = [ "api://default", var.okta_client_id, ]
-    role_name = "vault-role-okta-default"
+    role_name = "vault-role-okta-group-vault-developer"
     allowed_redirect_uris = [
         var.okta_redirect_uris,
         "http://localhost:8250/oidc/callback",
