@@ -71,6 +71,7 @@ resource "vault_identity_group_alias" "okta-group-b-team-alias" {
   canonical_id   = vault_identity_group.okta-group-b-team.id
 }
 
+/*
 resource "vault_identity_group" "a-team-ns-group" {
   name     = "a-team-ns-group"
   namespace = vault_namespace.children[locals.child_namespaces[0]].path_fq
@@ -106,3 +107,4 @@ resource "vault_identity_group" "shared-team-group" {
     responsibility = "both"
   }
 }
+*/
