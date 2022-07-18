@@ -1,3 +1,8 @@
+locals {
+  child_namespaces = toset(var.child_namespaces)
+}
+
+
 // external group for okta developers
 resource "vault_identity_group" "okta-group-vault-developer" {
   name     = "okta-group-vault-developer"
@@ -73,7 +78,7 @@ resource "vault_identity_group_alias" "okta-group-b-team-alias" {
 
 resource "vault_identity_group" "a-team-ns-group" {
   name     = "a-team-ns-group"
-  namespace = vault_namespace.children[a-team-ns].path_fq
+  namespace = vault_namespace.children[locals.child_namespaces[0]].path_fq
   policies = [vault_policy.a-team-policy.name]
   member_group_ids = [vault_identity_group.okta-group-a-team.id]
 
@@ -84,7 +89,7 @@ resource "vault_identity_group" "a-team-ns-group" {
 
 resource "vault_identity_group" "b-team-ns-group" {
   name     = "b-team-ns-group"
-  namespace = vault_namespace.children[b-team-ns].path_fq
+  namespace = vault_namespace.children[locals.child_namespaces[1]].path_fq
   policies = [vault_policy.b-team-policy.name]
   member_group_ids = [vault_identity_group.okta-group-b-team.id]
 
@@ -95,7 +100,7 @@ resource "vault_identity_group" "b-team-ns-group" {
 
 resource "vault_identity_group" "shared-team-group" {
   name     = "shared-team-a-group"
-  namespace = vault_namespace.children[share-ns].path_fq
+  namespace = vault_namespace.children[locals.child_namespaces[2]].path_fq
   policies = [vault_policy.shared-team-policy.name]
   member_group_ids = [
     vault_identity_group.okta-group-a-team.id,
