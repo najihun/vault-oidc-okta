@@ -10,18 +10,18 @@ resource "vault_policy" "developer-policy" {
 
 resource "vault_policy" "a-team-policy" {
   name   = "a-team-policy"
-  namespace = vault_namespace.children["a-team-ns"]
+  namespace = vault_namespace.children["a-team-ns"].path_fq
   policy = file("policies/a-team-policy.hcl")
 }
 
 resource "vault_policy" "b-team-policy" {
   name   = "b-team-policy"
-  namespace = vault_namespace.children["b-team-ns"]
+  namespace = vault_namespace.children["b-team-ns"].path_fq
   policy = file("policies/b-team-policy.hcl")
 }
 
 resource "vault_policy" "shared-team-policy" {
   name   = "shared-team-policy"
-  namespace = vault_namespace.children["shared-ns"]
+  namespace = vault_namespace.children["shared-ns"].path_fq
   policy = file("policies/shared-team-policy.hcl")
 }
