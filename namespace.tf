@@ -7,3 +7,9 @@ resource "vault_namespace" "children" {
   namespace = "admin"
   path      = each.key
 }
+
+resource "vault_namespace" "test"{
+    namespace = "admin"
+    path = "testtest"
+}
+
