@@ -95,7 +95,7 @@ resource "vault_identity_group" "b-team-ns-group" {
 
 resource "vault_identity_group" "shared-team-group" {
   name     = "shared-team-a-group"
-  namespace = vault_namespace.children["shared-team-ns"].path_fq
+  namespace = vault_namespace.children["share-ns"].path_fq
   policies = [vault_policy.shared-team-policy.name]
   member_group_ids = [
     vault_identity_group.okta-group-a-team.id,
