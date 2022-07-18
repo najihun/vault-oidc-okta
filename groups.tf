@@ -71,9 +71,6 @@ resource "vault_identity_group_alias" "okta-group-b-team-alias" {
   canonical_id   = vault_identity_group.okta-group-b-team.id
 }
 
-
-vault write -namespace=admin/trainingg identity/group name="Training developers" policies="training-admin" member_group_ids=$(cat group_id.txt)
-
 resource "vault_identity_group" "a-team-ns-group" {
   name     = "a-team-ns-group"
   namespace = vault_namespace.children[0].path_fq
