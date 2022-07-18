@@ -70,3 +70,50 @@ resource "vault_identity_group_alias" "okta-group-b-team-alias" {
   mount_accessor = vault_jwt_auth_backend.okta_oidc.accessor
   canonical_id   = vault_identity_group.okta-group-b-team.id
 }
+
+
+vault write -namespace=admin/trainingg identity/group name="Training developers" policies="training-admin" member_group_ids=$(cat group_id.txt)
+
+resource "vault_identity_group" "a-team-ns-group" {
+  name     = "a-team-ns-group"
+  namespace = vault_namespace.children[0].path_fq
+  policies = [vault_policy.a-team-policy.name]
+  member_group_ids = vault_identity_group.okta-group-a-team.id
+
+  metadata = {
+    responsibility = "okta-group-a-team"
+  }
+}
+
+resource "vault_identity_group" "b-team-ns-group" {
+  name     = "b-team-ns-group"
+  namespace = vault_namespace.children[1].path_fq
+  policies = [vault_policy.b-team-policy.name]
+  member_group_ids = vault_identity_group.okta-group-b-team.id
+
+  metadata = {
+    responsibility = "okta-group-b-team"
+  }
+}
+
+resource "vault_identity_group" "shared-team-a-group" {
+  name     = "shared-team-a-group"
+  namespace = vault_namespace.children[2].path_fq
+  policies = [vault_policy.shared-team-policy.name]
+  member_group_ids = vault_identity_group.okta-group-a-team.id
+
+  metadata = {
+    responsibility = "okta-group-a-team"
+  }
+}
+
+resource "vault_identity_group" "shared-team-b-group" {
+  name     = "shared-team-b-group"
+  namespace = vault_namespace.children[2].path_fq
+  policies = [vault_policy.shared-team-policy.name]
+  member_group_ids = vault_identity_group.okta-group-b-team.id
+
+  metadata = {
+    responsibility = "okta-group-b-team"
+  }
+}
