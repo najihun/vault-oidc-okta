@@ -9,7 +9,6 @@ resource "vault_namespace" "children" {
 }
 
 resource "vault_namespace" "test"{
-    namespace = "admin"
     path = "testtest"
 }
 
