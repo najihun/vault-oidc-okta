@@ -38,3 +38,35 @@ resource "vault_jwt_auth_backend_role" "vault-role-okta-group-vault-admins" {
     token_policies = [ "default" ]
 }
 
+// a-team-member
+resource "vault_jwt_auth_backend_role" "vault-role-okta-group-a-team" {
+    backend = vault_jwt_auth_backend.okta_oidc.path
+    bound_audiences = [ var.okta_client_id ]
+    role_name = "vault-role-okta-group-a-team"
+    allowed_redirect_uris = [
+        var.okta_redirect_uris,
+        "http://localhost:8250/oidc/callback",
+    ]
+    role_type       = "oidc"
+    user_claim = "sub"
+    oidc_scopes = [ "groups" ]
+    groups_claim = "groups"
+    token_policies = [ "default" ]
+}
+
+// b-team-member
+resource "vault_jwt_auth_backend_role" "vault-role-okta-group-b-team" {
+    backend = vault_jwt_auth_backend.okta_oidc.path
+    bound_audiences = [ var.okta_client_id ]
+    role_name = "vault-role-okta-group-b-team"
+    allowed_redirect_uris = [
+        var.okta_redirect_uris,
+        "http://localhost:8250/oidc/callback",
+    ]
+    role_type       = "oidc"
+    user_claim = "sub"
+    oidc_scopes = [ "groups" ]
+    groups_claim = "groups"
+    token_policies = [ "default" ]
+}
+

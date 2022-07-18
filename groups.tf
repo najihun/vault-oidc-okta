@@ -33,3 +33,40 @@ resource "vault_identity_group_alias" "okta-group-vault-admins-alias" {
   mount_accessor = vault_jwt_auth_backend.okta_oidc.accessor
   canonical_id   = vault_identity_group.okta-group-vault-admins.id
 }
+
+
+// external group for a-team
+resource "vault_identity_group" "okta-group-a-team" {
+  name     = "okta-group-a-team"
+  type     = "external"
+  policies = [vault_policy.developer-policy.name]
+
+  metadata = {
+    responsibility = "okta-group-a-team"
+  }
+}
+
+// external group alias for okta developers
+resource "vault_identity_group_alias" "okta-group-a-team-alias" {
+  name           = "okta-group-a-team"
+  mount_accessor = vault_jwt_auth_backend.okta_oidc.accessor
+  canonical_id   = vault_identity_group.okta-group-a-team.id
+}
+
+// external group for b-team
+resource "vault_identity_group" "okta-group-b-team" {
+  name     = "okta-group-b-team"
+  type     = "external"
+  policies = [vault_policy.developer-policy.name]
+
+  metadata = {
+    responsibility = "okta-group-b-team"
+  }
+}
+
+// external group alias for okta developers
+resource "vault_identity_group_alias" "okta-group-b-team-alias" {
+  name           = "okta-group-b-team"
+  mount_accessor = vault_jwt_auth_backend.okta_oidc.accessor
+  canonical_id   = vault_identity_group.okta-group-b-team.id
+}

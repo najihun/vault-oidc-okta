@@ -33,3 +33,11 @@ variable "okta_client_secret" {
   type        = string
   description = "okta client secret"
 }
+
+variable "child_namespaces" {
+  default = [
+    "a-team-ns",
+    "b-team-ns",
+    "share-ns",
+  ]
+}
