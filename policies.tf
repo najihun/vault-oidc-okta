@@ -22,6 +22,6 @@ resource "vault_policy" "b-team-policy" {
 
 resource "vault_policy" "shared-team-policy" {
   name   = "shared-team-policy"
-  namespace = vault_namespace.children["shared-ns"].path_fq
+  namespace = vault_namespace.children["share-ns"].path_fq
   policy = file("policies/shared-team-policy.hcl")
 }
