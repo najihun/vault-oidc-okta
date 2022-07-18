@@ -1,0 +1,7 @@
+vault namespace create -namespace=admin trainingg
+
+vault namespace create -namespace=admin certification
+
+vault namespace list -namespace=admin
+
+vault policy write -namespace=admin/trainingg training-admin training-admin.hcl
