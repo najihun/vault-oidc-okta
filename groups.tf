@@ -40,13 +40,13 @@ resource "vault_identity_group" "okta-group-a-team" {
   name     = "okta-group-a-team"
   type     = "external"
   policies = [vault_policy.developer-policy.name]
-
+  
   metadata = {
     responsibility = "okta-group-a-team"
   }
 }
 
-// external group alias for okta developers
+// external group alias for okta-group-a-team-alias
 resource "vault_identity_group_alias" "okta-group-a-team-alias" {
   name           = "okta-group-a-team"
   mount_accessor = vault_jwt_auth_backend.okta_oidc.accessor
